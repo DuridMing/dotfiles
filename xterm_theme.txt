@@ -1,0 +1,14 @@
+XTerm*foreground: grey
+XTerm*background: black
+XTerm*scrollBar: on
+XTerm*saveLines: 500
+XTerm*loginShell: on
+XTerm*reverseWrap: on
+XTerm*leftScrollBar: true
+XTerm*VT100*jumpScroll: true
+XTerm*boldFont: 7x14bold
+XTerm*font: 7x14
+
+https://github.com/base16-templates/base16-xresources
+https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/xrdb
+https://github.com/tlatsas/xcolors

@@ -1,0 +1,77 @@
+set bg=light
+set ai
+colorscheme torte
+"### my vim settings - 2021-01-01 "
+
+" My default text coding "
+"set encoding=utf-8
+
+" Automatic syntax highlight "
+syntax on
+
+" Default white texts on dark background 
+set background=dark
+hi Normal ctermfg=White ctermbg=Black cterm=NONE guifg=White guibg=Black gui=NONE
+
+" Setup dark background syntax highlight colors "
+hi Comment    term=bold cterm=NONE ctermfg=Blue ctermbg=NONE gui=NONE guifg=#6060ff guibg=NONE
+hi Constant   term=underline cterm=NONE ctermfg=Red ctermbg=NONE gui=NONE guifg=#ff0000 guibg=NONE
+hi Special    term=bold cterm=bold ctermfg=208 ctermbg=NONE gui=bold guifg=Orange guibg=NONE
+hi Identifier term=underline cterm=bold ctermfg=Cyan ctermbg=NONE gui=NONE guifg=#00ffff guibg=NONE
+hi Statement  term=bold cterm=NONE ctermfg=Yellow ctermbg=NONE gui=bold guifg=#ffff00 guibg=NONE
+hi PreProc  term=underline cterm=NONE ctermfg=Magenta ctermbg=NONE gui=NONE guifg=#ff00ff guibg=NONE
+hi Type     term=underline cterm=NONE ctermfg=DarkGreen ctermbg=NONE gui=bold guifg=#008000 guibg=NONE
+hi Underlined  term=underline cterm=underline ctermfg=DarkMagenta gui=underline guifg=#8b008b
+hi Ignore      term=NONE cterm=NONE ctermfg=Black ctermbg=NONE gui=NONE guifg=bg guibg=NONE
+
+" Setup vimdiff color "
+hi DiffAdd    cterm=bold ctermfg=Green ctermbg=17 gui=bold guifg=#00ff00 guibg=#000080
+hi DiffDelete cterm=bold ctermfg=Green ctermbg=17 gui=bold guifg=#00ff00 guibg=#000080
+hi DiffChange cterm=bold ctermfg=Green ctermbg=17 gui=bold guifg=#00ff00 guibg=#000080
+hi DiffText   cterm=bold ctermfg=Yellow ctermbg=88 gui=bold guifg=#ffff00 guibg=#800000
+
+" Set my cursor line style " 
+set cursorline
+hi cursorline cterm=NONE ctermbg=235
+
+" Replace tabs with spaces "
+set expandtab
+set smarttab
+
+" Make tab 2 spaces "
+set tabstop=2
+set shiftwidth=2
+
+" Make tab 2 spaces by default for all file types "
+autocmd FileType * set tabstop=2
+autocmd FileType * set shiftwidth=2
+
+" Shift+Tab unindents a line "
+imap <S-Tab> <Esc><<i
+nmap <S-tab> <<
+
+" Visual mode tab/untab identation "
+vmap <S-Tab> <gv
+vmap <Tab> >gv
+
+" Keep the indentation level in indented block when I press enter "
+set autoindent
+
+" Allows command mode to autocomplete paths using tab like bash does "
+set wildmenu
+set wildmode=list:longest
+
+"set mouse=a      " 點擊超連結,複製貼上用visual模式 y p
+set history=200   " 保留 200 個歷史指令
+set incsearch     " 輸入搜尋關鍵字的同時就高亮
+
+" Highlight column 80 to help keep lines of code less than 80 characters "
+set colorcolumn=80
+hi ColorColumn ctermbg=52
+
+" Disable highlight of search "
+"set hlsearch!
+
+" Set shortcut Ctrl+L to clean up highlight of search "
+nnoremap <C-L> :nohlsearch<CR><C-L>
+nnoremap <C-M> :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR> :set autoindent! autoindent?<CR>
