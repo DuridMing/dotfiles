@@ -81,6 +81,9 @@ prompt_end() {
   fi
   echo -n "%{%f%}"
   CURRENT_BG=''
+
+  # Adds the new line and ➜ as the start character.
+  printf "\n ➜ ";
 }
 
 ### Prompt components
@@ -89,7 +92,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment "#ffffff" black "%(!.%{%F{yellow}%}.)%n@%m"
+    prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
   fi
 }
 
@@ -204,7 +207,7 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment "#00ffff" $CURRENT_FG '%~'
+  prompt_segment blue $CURRENT_FG '%~'
 }
 
 # Virtualenv: current working virtualenv
@@ -219,7 +222,7 @@ prompt_virtualenv() {
     if [[ -n $python_version ]];then
       local env_label="$(basename $CONDA_PREFIX)"
       # env_label+= " $python_version"
-      prompt_segment "#99ff99" black "`basename $env_label` $python_version"
+      prompt_segment green black "`basename $env_label` $python_version"
     fi
   fi
   
@@ -264,6 +267,8 @@ prompt_new_line(){
   
 }
 
+
+
 ## Main prompt
 build_prompt() {
   RETVAL=$?
@@ -276,6 +281,7 @@ build_prompt() {
   prompt_bzr
   prompt_hg
   prompt_end
+
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt)'
